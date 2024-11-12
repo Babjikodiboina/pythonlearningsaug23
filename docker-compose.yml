@@ -3,7 +3,7 @@ services:
   modbus-server:
     image: oitc/modbus-server
     ports:
-      - "5020:5020"  # Expose container's internal port 5020 to the same port on the host
+      - "5020:5020"  # Expose container's internal port 5020 to the same port on the host.
     networks:
       - modbus-network
 
