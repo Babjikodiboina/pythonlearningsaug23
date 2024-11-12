@@ -1,0 +1,22 @@
+version: '3'
+services:
+  modbus-server:
+    image: oitc/modbus-server
+    ports:
+      - "5020:5020"  # Expose container's internal port 5020 to the same port on the host
+    networks:
+      - modbus-network
+
+  modbus-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - modbus-server
+    command: ["python", "modbus_client.py"]
+    networks:
+      - modbus-network
+
+networks:
+  modbus-network:
+    driver: bridge
